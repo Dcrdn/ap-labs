@@ -7,6 +7,6 @@ def ls_recursivo(string, sofar, pos):
         helper=sofar+string[pos]
         return max(ls_recursivo(string,helper,pos-1)+1, ls_recursivo(string,sofar,pos-1))
 
-word="abcdafg"
-word="adcvf"
+#word="abcdafg"
+word=str(input())
 print(ls_recursivo(word,"",len(word)-1))
