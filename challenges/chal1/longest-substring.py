@@ -1,17 +1,12 @@
-def ls(string):
-    seen=set()
-    size=0
-    local=0
-    for pos in range(0,len(string)):
-        if string[pos] in seen:
-            seen=set(string[pos])
-            local=1
-        else:
-            seen.add(string[pos])
-            local+=1
-        if(local>size):
-            size=local
-    return size
+def ls_recursivo(string, sofar, pos):
+    if pos==-1:
+        return 0
+    elif string[pos] in sofar:
+        return 0
+    else:
+        helper=sofar+string[pos]
+        return max(ls_recursivo(string,helper,pos-1)+1, ls_recursivo(string,sofar,pos-1))
 
-word="bbbbb"
-print(ls(word))
+word="abcdafg"
+word="adcvf"
+print(ls_recursivo(word,"",len(word)-1))

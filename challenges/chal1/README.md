@@ -2,9 +2,10 @@
 
 **Code done in python 3**
 
-I save every character in a set and I increase a localCounter, in case I see a character that I already have in a set I put my set with JUST my new character and start my localCounter again.
-
-I have a globalCounter and I check if my localCounter at some point is bigger than globalCounter I update globalCounter=localCounter
+I do it recursively taking 2 paths:
+1 where I add my character
+and 1 where I don't add my current character
+I just return the max value obtained
 
 ## To use:
 
