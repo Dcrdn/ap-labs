@@ -54,11 +54,9 @@ int infof(const char *format, ...){
     textcolor(BRIGHT, BLUE, BLACK);
     va_list arg;
     if(logDest ==0 ){
-        printf("info not sys\n");
         va_start(arg, format);
         counter = vprintf(format, arg);
     }else if(logDest==1){
-        printf("info sys\n");
        	va_start (arg, format);
 		openlog ("Logger-INFO", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
 		vsyslog(LOG_INFO, format, arg);
