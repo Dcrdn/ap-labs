@@ -1,18 +1,19 @@
 To compile:
-
-make
+------------
+- make
 
 To run: (important to access super mode)
+------------
 
-sudo ./mytop
+- sudo ./mytop
 
 To test:
-
-Press ctrl+c and a file will be created where you can see the TOP information.
+------------
+- Press ctrl+c and a file will be created where you can see the TOP information.
 
 To close:
-
-Press ctrl+z
+------------
+- Press ctrl+z
 
 
 MyTop
