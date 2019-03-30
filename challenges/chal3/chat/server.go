@@ -60,7 +60,10 @@ func handleConn(conn net.Conn, usuario string) {
 	m2[who]=conn
 
 	ch <- "You are " + usuario+"\n"
-	messages <- usuario + " has arrived \n"
+
+	nm:= strings.TrimSuffix(usuario, "\n")
+
+	messages <- nm + " has arrived \n"
 	entering <- ch
 
 	input := bufio.NewScanner(conn)
@@ -80,8 +83,13 @@ func handleConn(conn net.Conn, usuario string) {
 	
 		}else if(strings.Compare(strings.Split(input.Text()," ")[0], "/user") == 0){
 			target:=strings.Split(input.Text()," ")[1]+"\n"
-			ipTarget:=m[target]
-			ch <- "IP: " + ipTarget+"  Username: "+ target
+			
+			if _, ok := m[target]; ok {
+				ipTarget:=m[target]
+				ch <- "IP: " + ipTarget+"  Username: "+ target
+			}else{
+				ch <- "irc-server > User not found"
+			}
 	
 		}else if(strings.Compare(strings.Split(input.Text()," ")[0], "/time") == 0){
 			t:=time.Now()
@@ -91,22 +99,35 @@ func handleConn(conn net.Conn, usuario string) {
 			target:=strings.Split(input.Text()," ")[1]+"\n"
 			mensaje:=strings.Split(input.Text()," ")[2:]
 
-			tmp:=""
-			for _, element := range mensaje {
-				tmp+=element+" "
+			if _, ok := m[target]; ok {
+				tmp:=""
+				for _, element := range mensaje {
+					tmp+=element+" "
+				}
+				
+				conection:=m2[m[target]]
+				fmt.Fprintln(conection, tmp) 
+			}else{
+				ch <- "irc-server > User not found"
 			}
 			
-			conection:=m2[m[target]]
-			fmt.Fprintln(conection, tmp) 
 		}else{
 			nombre:= strings.TrimSuffix(usuario, "\n")
 
 			messages <- nombre + ": " + input.Text()+"\n"
 		} 
 	}
-	// NOTE: ignoring potential errors from input.Err()
-
 	leaving <- ch
+	delete(m, usuario)
+	delete(m2, who)
+	var temp[]string
+
+	for _, element := range usuarios {
+		if(strings.Compare(element, usuario) != 0){
+			temp=append(temp, element)
+		}
+	}
+	usuarios=temp
 	messages <- who + " has left"
 	conn.Close()
 }

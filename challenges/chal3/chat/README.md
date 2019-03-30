@@ -1,3 +1,35 @@
+First run server:
+
+go run client.go --host NameOfHost --port NumberPort
+
+Example:
+
+go run client.go --host localhost --port 9000
+
+
+Then run N number of clients:
+
+go run run.go --user NameOfUser --host NameOfHost
+
+Example:
+
+go run run.go --user diego --host localhost:9000
+
+
+El localhost del client tiene que coincidir con el del server
+
+No puede haber usuarios repetidos.
+
+Comandos disponibles:
+
+| Sub-command         | description                                             |
+|---------------------|---------------------------------------------------------|
+| `/users`            | To list all connected users                             |
+| `/msg <user> <msg>` | To send a direct message to the specified `user`        |
+| `/time`             | Get IRC Server's localtime                              |
+| `/user <user>`      | Get more details about `user` (Username and IP address) |
+
+
 Simple IRC Server
 =================
 Implement a simple [IRC](https://en.wikipedia.org/wiki/Internet_Relay_Chat) server with a client-server architecture.
