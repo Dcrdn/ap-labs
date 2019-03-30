@@ -1,4 +1,4 @@
-TO compile:
+To compile:
 
 make
 
