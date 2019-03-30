@@ -1,18 +1,18 @@
 First run server:
 ------------
-- go run client.go --host NameOfHost --port NumberPort
+- go run server.go --host NameOfHost --port NumberPort
 
 Example:
 ------------
-- go run client.go --host localhost --port 9000
+- go run server.go --host localhost --port 9000
 
 Then run N number of clients:
 ------------
-- go run run.go --user NameOfUser --host NameOfHost
+- go run client.go --user NameOfUser --host NameOfHost
 
 Example:
 ------------
-- go run run.go --user diego --host localhost:9000
+- go run client.go --user diego --host localhost:9000
 
 Comentarios:
 ------------
