@@ -8,15 +8,15 @@ Example:
 
 Then run N number of clients:
 ------------
-- go run client.go --user NameOfUser --host NameOfHost
+- go run client.go --user NameOfUser --server NameOfHost
 
 Example:
 ------------
-- go run client.go --user diego --host localhost:9000
+- go run client.go --user diego --server localhost:9000
 
 Comentarios:
 ------------
-- El localhost del client tiene que coincidir con el del server
+- El server del client tiene que coincidir con el localhost:puerto del server
 - No puede haber usuarios repetidos.
 
 
